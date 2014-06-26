@@ -1,0 +1,29 @@
+modules {
+  module {
+    name = "stormganglia"
+    language = "python"
+
+    param nimbus_serv {
+        value="localhost"
+    }
+
+    param nimbus_port {
+	value=6627
+    }
+
+    #param topology {
+    #	value="topology"
+    #}
+
+  }
+}
+
+collection_group {
+  collect_every = 10
+  time_threshold = 50
+  metric {
+    name_match = '([a-zA-Z0-9_]+)-([a-zA-Z_0-9]+)-([0-9])-[0-9]'
+    title = "Bolt \\1 \\2 \\3"
+    value_threshold = 100.0
+  }
+}
